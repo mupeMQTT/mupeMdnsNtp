@@ -26,6 +26,10 @@
 #include "mdns.h"
 #include <esp_sntp.h>
 
+static const char *TAG = "mupeMdnsNtp";
+
+
+
 esp_err_t start_mdns_service() {
 	//initialize mDNS service
 	size_t strSize=0;
@@ -82,7 +86,7 @@ void waitForNTPConnect() {
 	TickType_t xLastWakeTime;
 	const TickType_t xFrequency = pdMS_TO_TICKS(1000);
 	xLastWakeTime = xTaskGetTickCount();
-	if (getNowMs() < 1500000000000) {
+	while (getNowMs() < 1500000000000) {
 		vTaskDelayUntil(&xLastWakeTime, xFrequency);
 	}
 
