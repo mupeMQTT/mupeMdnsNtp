@@ -26,7 +26,7 @@
 #include "mdns.h"
 #include <esp_sntp.h>
 
-static const char *TAG = "mupeMdnsNtp";
+//static const char *TAG = "mupeMdnsNtp";
 
 
 
@@ -62,7 +62,7 @@ esp_err_t start_mdns_service() {
 	//set default instance
 	mdns_instance_name_set("Peters test ESP");
 	mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
-	mdns_service_add(NULL, "_mqtt", "_mqtt", 1883, NULL, 0);
+	mdns_service_add(NULL, "_mqtt", "_tcp", 1883, NULL, 0);
 	return err;
 }
 
