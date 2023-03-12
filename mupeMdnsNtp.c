@@ -91,3 +91,9 @@ void waitForNTPConnect() {
 	}
 
 }
+double getNowMinus(double hour ){
+	double ret=getNowMs()/1000;
+	ret=ret-hour*60*60;
+	printf("%f\r\n",ret);
+	return ret;
+}

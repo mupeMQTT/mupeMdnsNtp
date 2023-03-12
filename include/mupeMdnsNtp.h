@@ -28,6 +28,7 @@
 void mupeMdnsNtpInit(void );
 
 uint64_t getNowMs() ;
+double getNowMinus(double hour );
 void waitForNTPConnect();
 
 
