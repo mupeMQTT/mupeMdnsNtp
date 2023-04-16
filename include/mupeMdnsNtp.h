@@ -30,6 +30,7 @@ void mupeMdnsNtpInit(void );
 uint64_t getNowMs() ;
 double getNowMinus(double hour );
 void waitForNTPConnect();
+void  delayMicroseconds(uint32_t us);
 
 
 #endif

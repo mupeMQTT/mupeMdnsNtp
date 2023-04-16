@@ -25,10 +25,33 @@
 #include "nvs_flash.h"
 #include "mdns.h"
 #include <esp_sntp.h>
+#include "freertos/FreeRTOS.h"
+#include "esp_timer.h"
 
+#define NOP() asm volatile ("nop")
 //static const char *TAG = "mupeMdnsNtp";
 
 
+uint32_t   micros()
+{
+
+    return esp_timer_get_time();
+}
+void  delayMicroseconds(uint32_t us)
+{
+    uint32_t m = micros();
+    if(us){
+        uint32_t e = (m + us);
+        if(m > e){ //overflow
+            while(micros() > e){
+                NOP();
+            }
+        }
+        while(micros() < e){
+            NOP();
+        }
+    }
+}
 
 esp_err_t start_mdns_service() {
 	//initialize mDNS service
